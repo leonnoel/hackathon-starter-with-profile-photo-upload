@@ -65,6 +65,16 @@ userSchema.methods.gravatar = function gravatar(size) {
   return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
 };
 
+userSchema.methods.profilePhoto = function profilePhoto(size) {
+  if (!size) {
+    size = 200;
+  }
+  if (!this.profile.picture) {
+    return `https://gravatar.com/avatar/?s=${size}&d=retro`;
+  }
+  return "/uploads/" + `${this.profile.picture}`;
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

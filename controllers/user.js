@@ -142,7 +142,7 @@ exports.postUpdateProfile = (req, res, next) => {
 
   User.findById(req.user.id, (err, user) => {
     if (err) { return next(err); }
-    user.email = req.body.email || '';
+    user.email = req.body.email || req.user.email;
     user.profile.name = req.body.name || '';
     user.profile.gender = req.body.gender || '';
     user.profile.location = req.body.location || '';
